@@ -1,0 +1,33 @@
+﻿<Window x:Name="ComQuasler" x:Class="ComQuasler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="354.118" Width="525" MinWidth="525" MinHeight="354">
+    <Grid x:Name="SimpleGrid">
+        <ComboBox Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
+        <Button Content="Connect" Margin="0,37,55,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+        <RichTextBox Margin="90,63,140,139" RenderTransformOrigin="0.5,1">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <RichTextBox Margin="90,0,140,19" Height="89" VerticalAlignment="Bottom">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Button Content="Delay" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="if() else" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="while" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Output" Margin="90,37,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48"/>
+        <Label Content="Input" Margin="90,0,0,108" HorizontalAlignment="Left" Width="38" RenderTransformOrigin="0.5,0.5" Height="26" VerticalAlignment="Bottom"/>
+        <Label Content="ComQuasler" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
+        <TextBox Height="23" Margin="0,64,10,0" TextWrapping="Wrap" Text="Not connected" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
+        <Button Content="Start" Margin="0,118,55,0" Height="22" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+        <Button Content="Stop" Margin="0,145,55,0" Height="22" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+
+    </Grid>
+</Window>
