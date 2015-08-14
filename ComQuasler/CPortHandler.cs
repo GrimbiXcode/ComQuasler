@@ -32,7 +32,7 @@ namespace ComQuasler
         /// <summary>
         /// Initialize components
         /// </summary>
-        public SerialPort serial = new SerialPort();                            // creates new serial port
+        private SerialPort serial = new SerialPort();                            // creates new serial port
         public string[] AvailableCOMPorts;                                      // create string array - later, here are all the com ports listed
         public int SelectedCOMPort;                                             // the number of the current port will be stored in here
         #endregion Initialize
@@ -42,19 +42,20 @@ namespace ComQuasler
         /// <summary>
         /// sets up serial port
         /// </summary>
-        public void SetUpPort()
+        public void SetUpPort(string port, int baud, string hand, int parity, int databits, int stop, int read, int write)
         {
             // setup:
-            serial.BaudRate = 38400;
-            serial.Handshake = System.IO.Ports.Handshake.None;
-            serial.Parity = Parity.None;
-            serial.DataBits = 8;
-            serial.StopBits = StopBits.One;
-            serial.ReadTimeout = 150;
-            serial.WriteTimeout = 50;
+            serial.PortName = port;
+            serial.BaudRate = baud;
+            serial.Handshake = System.IO.Ports.Handshake.[hand];
+            serial.Parity = Parity.[parity];
+            serial.DataBits = databits;
+            serial.StopBits = StopBits.[stop];
+            serial.ReadTimeout = read;
+            serial.WriteTimeout = write;
 
-            AvailableCOMPorts = SerialPort.GetPortNames();                      // save all available ports in a string array
-            SelectedCOMPort = 0;                                                // which port of them above is selected (start with 0)
+            //AvailableCOMPorts = SerialPort.GetPortNames();                      // save all available ports in a string array
+            //SelectedCOMPort = 0;                                                // which port of them above is selected (start with 0)
         }
 
         /// <summary>
@@ -64,8 +65,7 @@ namespace ComQuasler
         bool ConnectPort()
         {
             DisconnectPort();                                                   // before open new port, ensure that all ports are closed
-
-            serial.PortName = AvailableCOMPorts[SelectedCOMPort];               // set com port, which should be open
+            // set com port, which should be open
             try
             {
                 serial.Open();                                                  // try to open serial port
