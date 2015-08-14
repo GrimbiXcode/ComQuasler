@@ -42,7 +42,7 @@ namespace ComQuasler
         /// <summary>
         /// sets up serial port
         /// </summary>
-        public void SetUpPort(string port, int baud, string hand, int parity, int databits, int stop, int read, int write)
+        public void SetUpPort(string port, int baud, int hand, int parity, int databits, int stop, int read, int write)
         {
             // setup:
             serial.PortName = port;
