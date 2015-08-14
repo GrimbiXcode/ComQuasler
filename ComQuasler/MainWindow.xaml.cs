@@ -1,7 +1,7 @@
 ﻿/*****************************************************************************
  * Company:             GrimbixCode
  *
- * Project:             Richard AG RM580
+ * Project:             ComQuasler
  *
  * Target:              Windows
  *                   
