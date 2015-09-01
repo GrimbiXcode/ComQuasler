@@ -78,11 +78,6 @@ namespace ComQuasler
             NONE, CLOSED, TRYOPEN, CLOSEPORT, OPEN
         };
 
-        public enum qcStates                                                  // define all the Teststates
-        {
-            NONE, READY, VCC, SYNC, SWITCH_1, SWITCH_2, SWITCH_3, SWITCH_4, SWITCH_5, CONNECT_RM, SW_SWITCH, DISCONNECT_RM, BREAK, CLOSE_CONNECTION, CONFIG, FINISH_TEST
-        };
-
         private CPortHandler myComPort;
 
         
@@ -104,13 +99,78 @@ namespace ComQuasler
             _tboState.Text = qcPortState[0];
         }
 
-        #endregion #Constructor
+        #endregion Constructor
+
 
         #region GUI-Interface
 
+        private void _btnConnect_Click(object sender, RoutedEventArgs e)
+        {
+            // check for missing setup data
+            List<string> checkedComboBoxes = new List<string>(Check_ComboBoxes());
+            if (checkedComboBoxes.Count > 0)
+            {
+                string str = "";
+                foreach (string error in checkedComboBoxes)
+                {
+                    str += "- " + error + "\n\r";
+                }
+                if (checkedComboBoxes.Count == 1)
+                {
+                    MessageBox.Show("Folgende Angabe fehlt:\n\r" + str, "Fehlende Angaben", MessageBoxButton.OK);
+                }
+                else
+                {
+                    MessageBox.Show("Folgende Angaben fehlen:\n\r" + str, "Fehlende Angaben", MessageBoxButton.OK);
+                }
+            }
+            else 
+            {
+                // if all data were avaiable, setup comport
+                myComPort.SetUpPort(_cboComPort.SelectedItem.ToString(),
+                                    int.Parse(_cboBaudrate.SelectedItem.ToString()),
+                                    _cboHandshake.SelectedItem.ToString(),
+                                    _cboParity.SelectedIndex,
+                                    int.Parse(_tboDataBits.Text),
+                                    _cboStopBits.SelectedIndex,
+                                    int.Parse(_tboReadTimeout.Text),
+                                    int.Parse(_tboWriteTimeout.Text)
+                                    );
+            }
+        }
 
         #endregion GUI-Interface
 
+        #region methodes
+
+        private List<string> Check_ComboBoxes() 
+        {
+            List<string> checkList = new List<string>();
+     
+            if (_cboComPort.SelectedIndex == -1)
+            {
+                checkList.Add("COM Port");
+            }
+            if (_cboBaudrate.SelectedIndex == -1)
+            {
+                checkList.Add("Baudrate");
+            }
+            if (_cboHandshake.SelectedIndex == -1)
+            {
+                checkList.Add("Handshake");
+            }
+            if (_cboParity.SelectedIndex == -1)
+            {
+                checkList.Add("Parity");
+            }
+            if (_cboStopBits.SelectedIndex == -1)
+            {
+                checkList.Add("StopBit");
+            }
+            return checkList;
+        }
+
+        #endregion methodes
     }
 }
 /*****************************************************************************/
